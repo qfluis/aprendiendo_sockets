@@ -1,32 +1,27 @@
 const express = require('express');
 const app = express();
+//const cors = require('cors');
+//app.use(cors());
 const http = require('http');
 const server = http.createServer(app);
+/*const { Server } = require("socket.io");
+const io = new Server(server);*/
 
 
-/*
-const { Server } = require('socket.io');
-const io = new Server(3000);
+
+const io = require("socket.io")(server, {
+  allowRequest: (req, callback) => {
+    const noOriginHeader = req.headers.origin !== undefined;
+    callback(null, noOriginHeader);
+  }
+});
+
+
 
 io.on('connection', (socket) => {
-    // Envia mensaje a cliente
-    socket.emit("eventoServer", "holiwi 🖖");
-
-    //io.emit('broadcast', 'mensaje para todos');
-
-    // Recibir mensaje del cliente
-    socket.on("eventoCliente", (arg) => {
-        console.log(arg); // imprime mensaje de cliente
-    });
-});
-*/
-
-
-
-app.get('/', (req, res) => {
-  res.send('<h1>Hello world</h1>');
+  console.log('a user connected');
 });
 
-server.listen(3000, () => {
-  console.log('listening on *:3000');
+server.listen(3333, () => {
+  console.log('listening on *:3333');
 });
