@@ -9,7 +9,12 @@ class Server {
         this.port = process.env.PORT;
         // soket.io
         this.server = require('http').createServer(this.app);
-        this.io = require('socket.io')(this.server);
+        this.io = require('socket.io')(this.server, {
+            cors: {
+              origin: "http://localhost:3000",
+              methods: ["GET", "POST"]
+            }
+          });
 
 
         this.paths = {        }
