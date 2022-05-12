@@ -14,6 +14,7 @@ function App() {
   const lblOffline = useRef();
   const txt = useRef();
 
+  /*
   useEffect(() => {
     // useEffect se ejecuta 2 veces... apaño para que esto se ejecute 1
     console.log("useEffect", ejecutado);
@@ -38,7 +39,7 @@ function App() {
 
       ejecutado = true;
     }    
-  }, [socket]);
+  }, [socket]);*/
 
   const enviar = (e) => {
     const mensaje = txt.current.value;
