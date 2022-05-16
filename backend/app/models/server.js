@@ -1,20 +1,25 @@
 const express = require('express');
+const http     = require('http');
 const cors = require('cors');
-const { socketController } = require('../sockets/controller');
+//const { socketController } = require('../sockets/controller');
+const Sockets = require('./sockets');
 
 class Server {
 
     constructor() {
         this.app  = express();
         this.port = process.env.PORT;
-        // soket.io
-        this.server = require('http').createServer(this.app);
+
+        // HTTP Server
+        this.server = http.createServer(this.app);
+
+        // Sockets
         this.io = require('socket.io')(this.server, {
             cors: {
-              origin: "http://localhost:3000",
+              origin: "http://localhost:3000",  //ws://?
               methods: ["GET", "POST"]
             }
-          });
+        });
 
 
         this.paths = {        }
@@ -50,9 +55,8 @@ class Server {
     }
 
     sockets() {
-        this.io.on('connection', socketController);
-
-        
+        //this.io.on('connection', socketController);
+        new Sockets ( this.io );        
     }
 
     listen() {
