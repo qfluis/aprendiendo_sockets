@@ -1,6 +1,7 @@
 const express = require('express');
 const http     = require('http');
 const cors = require('cors');
+const dbConnection = require('../db/connection');
 //const { socketController } = require('../sockets/controller');
 const Sockets = require('./sockets');
 
@@ -8,7 +9,9 @@ class Server {
 
     constructor() {
         this.app  = express();
+
         this.port = process.env.PORT;
+        this.dbMongoConnection = process.env.MONGO_DB_CONNECTION;
 
         // HTTP Server
         this.server = http.createServer(this.app);
@@ -21,8 +24,13 @@ class Server {
             }
         });
 
+        // Database
+        this.conectarDB();
 
-        this.paths = {        }
+
+        this.paths = {
+            auth: "/auth"
+        }
 
         // Middlewares
         this.middlewares();
@@ -49,9 +57,8 @@ class Server {
 
     }
 
-    routes() {
-        
-        //this.app.use( this.paths.auth, require('../routes/auth'));        
+    routes() {        
+        this.app.use( this.paths.auth, require('../routes/auth'));        
     }
 
     sockets() {
