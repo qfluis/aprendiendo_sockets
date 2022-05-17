@@ -1,8 +1,8 @@
 import './Mensaje.css';
-export const Mensaje =({usuario, mensaje, suMensaje}) => {
+export const Mensaje =({ usuario, mensaje, suMensaje}) => {
     console.log(suMensaje);
-    const classMiMensaje = "mi-bocadillo mb-2 offset-md-4 col-md-8 p-2"
-    const classSuMensaje = "bocadillo mb-2 col-md-8 p-2"
+    const classMiMensaje = "mi-bocadillo mb-2 offset-md-2 col-md-10 p-2"
+    const classSuMensaje = "bocadillo mb-2 col-md-10 p-2"
 
 
     return (
