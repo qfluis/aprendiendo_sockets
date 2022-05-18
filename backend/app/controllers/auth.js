@@ -7,25 +7,18 @@ const login = async (req = request, res = response) => {
 
     const { email, pass } = req.body;
 
-
-    const { API_LOGIN_EMAIL, API_LOGIN_PASS } = process.env;
- 
-    // TODO: validar email y pass en BD
-
-    /*
-    if (email !== API_LOGIN_EMAIL || pass !== API_LOGIN_PASS ) {
-        res.status(400).json({
-            msg: "email y/o contraseña incorrectos"
-        });
-        return;
-    }
-    */
-
+    // Validar pass
+    const usuario = await Usuario.findOne({email});
+    if (!usuario || !bcrypt.compareSync(pass, usuario.pass) ) {
+        return res.status(401).json({
+            msg:"usuario y/o contraseña no válidos"
+        }); 
+    } 
+       
     // Generar JWT
-    // obtener ROL DEL USUARIO Y AÑADIRLO AL PAYLOAD DE JWT
-    const token = await generarJWT( email );
+    const token = await generarJWT( {email, rol:usuario.rol} );
 
-    return res.json({
+    return res.status(200).json({
         msg: "login correcto 👍",
         token
     });    
