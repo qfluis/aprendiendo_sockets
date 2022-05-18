@@ -1,4 +1,4 @@
-const { Schema, modle } = require('mongoose');
+const { Schema, model } = require('mongoose');
 const usuarioSchema = Schema({
     email: {
         type: String,
@@ -17,9 +17,9 @@ const usuarioSchema = Schema({
     foto: {
         type: String
     },
-    fechaCreacion: {
+    /*fechaCreacion: {
         type
-    },
+    },*/
     rol: {
         type:String,
         required: true,

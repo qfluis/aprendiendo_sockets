@@ -1,6 +1,6 @@
 const { response, request } = require('express');
 const { generarJWT } = require('../helpers/generar-jwt');
-
+const Usuario = require('../models/Usuario');
 
 const login = async (req = request, res = response) => {
 
@@ -29,6 +29,26 @@ const login = async (req = request, res = response) => {
     });    
 }
 
+const register = async (req = request, res= response) => {
+
+    const { email, pass, nickName  } = req.body;
+    // TODO: ENCRIPTAR PASS
+    // comprobar email único
+    // comprobar nickName único
+    try {
+        const usuario = new Usuario({ email, pass, nickName, rol:'USER' });
+        await usuario.save();
+    } catch (err) {
+        res.status(500).json({
+            msg:"Error en BD"
+        });
+    }
+    
+    res.status(201).json({
+        msg:"usuario creado correctamente"
+    });
+
+}
 
 
 
@@ -43,4 +63,4 @@ const authNotFound = (req, res) => {
     });
 }
 
-module.exports = { login, authNotFound }
+module.exports = { login, register, authNotFound }
