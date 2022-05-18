@@ -17,9 +17,10 @@ const usuarioSchema = Schema({
     foto: {
         type: String
     },
-    /*fechaCreacion: {
-        type
-    },*/
+    fechaCreacion: {
+        type: Date,
+        required: [true, 'fecha creación no disponible']
+    },
     rol: {
         type:String,
         required: true,
