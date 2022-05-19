@@ -25,7 +25,7 @@ const login = async (req = request, res = response) => {
 }
 
 const register = async (req = request, res= response) => {
-
+    console.log("holis");
     const { email, pass, nickName } = req.body;
     
     // Comprobaciones valores únicos BD
@@ -46,7 +46,7 @@ const register = async (req = request, res= response) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(pass, salt);
 
-    // Usuario creados, por defecto son USERs
+    // Usuario creados, por defecto son rol USER
     try {
         const usuario = new Usuario({ email, pass:hash, nickName, rol:'USER', fechaCreacion:new Date() });
         await usuario.save();

@@ -6,17 +6,17 @@ const { login, register, authNotFound } = require('../controllers/auth');
 
 const router = Router();
 // login
-router.post('/login', [
+router.post('/login', [    
     check('email', 'Debes especificar un email válido').isEmail(),
     check('pass', 'Debes introducir un password de al menos 6 caracteres').isLength({min:6}),
     validarCampos
 ], login);
 
 // register
-router.post('/register', [
+router.post('/register', [  // TODO: PETA ANTES DE HACER LOS CHECKS SI LE PASAS UN JSON NO VÁLIDO (MIRAR POSTMAN)
     check('email', 'Debes especificar un email válido').isEmail(),
     check('pass', 'Debes introducir un password de al menos 6 caracteres').isLength({min:6}),
-    check('nickName', 'Debes introducir un nickName de al menos 3 caracteres').isLength({min:3}),
+    check('nickName', 'Debes introducir un nickName de al menos 3 caracteres').isLength({min:3}),   
     validarCampos
 ], register);
 
