@@ -4,13 +4,14 @@ import { Footer } from './components/Footer';
 import { NavBar } from './components/NavBar';
 import { SocketProvider } from './context/SocketContext';
 
+
 export const SmapChatApp = () => {
     return (  
         <>  
             <NavBar />
-            <SocketProvider> 
+            <SocketProvider>
                 <AppRouter />
-            </SocketProvider>            
+            </SocketProvider>        
             <Footer />
         </>
     );

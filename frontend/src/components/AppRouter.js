@@ -1,5 +1,4 @@
 import {
-    BrowserRouter as Router,
     Routes,
     Route,
 } from "react-router-dom"
@@ -11,7 +10,7 @@ import Page404 from "../pages/Page404";
 // TODO: ResgisterPage
 export const AppRouter = () => {
     return(
-        <Router>
+
             <div>
                 <Routes>
                     <Route exact path="/" element={ <HomePage /> } />
@@ -19,6 +18,5 @@ export const AppRouter = () => {
                     <Route path="*" element={<Page404 />} />
                 </Routes>
             </div>
-        </Router>
     );
 }
