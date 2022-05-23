@@ -4,7 +4,9 @@ function LoginPage() {
 
 
     return (
-        <h1>Login</h1>
+        <div className="container">
+            <h1>Login</h1>
+        </div>        
     )
 
 }

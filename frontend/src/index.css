@@ -2,7 +2,7 @@ body {
   background-color: gray;
 }
 
-#root > .container {
+#root > div > .container {
   background-color: white;
   min-height: 100vh
 }
