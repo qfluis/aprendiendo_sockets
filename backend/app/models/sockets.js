@@ -1,5 +1,9 @@
 const Salas = require('./salas');
 
+
+
+// AUTENTICACIÓN CON JWT - https://desarrolloactivo.com/blog/jwt-socket-io/
+
 class Sockets {
     constructor( io ) {
 
@@ -24,10 +28,14 @@ class Sockets {
                 console.log("Cliente desconectado", socket.id);
             });
            
-            socket.on("entrar-sala", (sala) => {
+            socket.on("entrar-sala", (/*salaAnterior, */sala) => {
+                // TODO: socket.leave(salaAnterior)
+                // https://socket.io/docs/v3/rooms/
+                console.log(socket.rooms);
                 socket.join(sala);
                 console.log(socket.id, "Entra en sala " + sala);
-                // emit("entrar-saña ¿?")
+                // emit("entrar-sala ¿?")
+                // emit("salir-sala ¿?")
             });
 
             //TODO: salir-sala¿?
