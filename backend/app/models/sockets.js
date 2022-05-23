@@ -29,11 +29,14 @@ class Sockets {
             });
            
             socket.on("entrar-sala", (/*salaAnterior, */sala) => {
-                // TODO: socket.leave(salaAnterior)
                 // https://socket.io/docs/v3/rooms/
-                console.log(socket.rooms);
+                //console.log('socket rooms:',socket.rooms);
+                const salaAnterior = Array.from(socket.rooms)[2];
+
+                if (salaAnterior) socket.leave(salaAnterior);
                 socket.join(sala);
                 console.log(socket.id, "Entra en sala " + sala);
+                
                 // emit("entrar-sala ¿?")
                 // emit("salir-sala ¿?")
             });
