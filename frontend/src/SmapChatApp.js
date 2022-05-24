@@ -1,21 +1,35 @@
-import React from 'react'
+import React, { useReducer } from 'react';
 import { AppRouter } from './components/AppRouter';
 import { Footer } from './components/Footer';
 import { NavBar } from './components/NavBar';
 import { SocketProvider } from './context/SocketContext';
 import { AuthContext } from './auth/authContext';
+import { authReducer } from './auth/authReducer';
 
+const init = () => {
+    return {
+        logged: true,
+        email: 'qfluis@gmail.com',
+        user: 'qfluis'
+    }
+}
 
 export const SmapChatApp = () => {
+    
+    const [ user, dispatch ] = useReducer( authReducer, {}, init );
+    
     return (  
         <>  
-            <NavBar />
-                <AuthContext.Provider>
-                <SocketProvider>
-                    <AppRouter />
-                </SocketProvider>
-                </AuthContext.Provider>        
-            <Footer />
+            <AuthContext.Provider value={{
+                    user,
+                    dispatch
+            }}>
+                <NavBar />                
+                    <SocketProvider>
+                        <AppRouter />
+                    </SocketProvider>                      
+                <Footer />
+            </AuthContext.Provider>  
         </>
     );
 }

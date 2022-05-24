@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../auth/authContext';
 
 export const NavBar = () => {
+
+  const authContext = useContext(AuthContext);
+  const {user} = authContext;
+  console.log(user.email);
+
   return (
     <>
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -23,7 +29,7 @@ export const NavBar = () => {
         </div>
       </div>
     </nav>
-
+            <p>Wellcome {user.email}</p>
     </>
   )
 }
