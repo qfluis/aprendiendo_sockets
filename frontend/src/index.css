@@ -1,9 +1,21 @@
 body {
-  background-color: gray;
+  background-color: rgb(255, 145, 0);
 }
 
 #root > div > .container {
   background-color: white;
   min-height: 100vh
+}
+
+.service-status {
+  padding-left: 12px;
+  background-color: white;
+  margin:0px;
+  border-bottom: 1px solid black;
+}
+footer {
+  background-color: black;
+  color: white;
+  padding-left: 12px;
 }
 

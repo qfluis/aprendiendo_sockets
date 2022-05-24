@@ -10,18 +10,17 @@ function HomePage() {
   const [ sala, setSala ] = useState('');
 
   return (
-    <div className="container" >
-      <h1>SmapChat</h1>
-      <hr />
-      <div>
+    <>
+    <p className="service-status">
           Service status:&nbsp;
           {
             (online)
             ?<span className="text-success">Online</span>
             :<span className="text-danger">Offline</span>
           }
-      </div>
-      <hr />
+      </p>
+    <div className="container" >
+      
       <div className="row">
         <div className="col-md-3">
           <h2>Salas</h2>
@@ -34,6 +33,7 @@ function HomePage() {
           
       </div>
     </div>
+    </>
   );
 }
 
