@@ -1,12 +1,22 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../auth/authContext';
+import { types } from '../types/types'
 
 export const NavBar = () => {
 
   const authContext = useContext(AuthContext);
-  const {user} = authContext;
-  console.log(user.email);
+  console.log(authContext)
+  const {user, dispatch} = authContext;
+  const navigate = useNavigate();
+
+  const logout = () => {
+    dispatch({type:types.logout});
+    
+    navigate("/login");
+
+  }
+
 
   return (
     <>
@@ -17,19 +27,21 @@ export const NavBar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav">
-            {/*}
-            <a className="nav-link active" aria-current="page" href="/">Home</a>
-            <a className="nav-link" href="login">Login</a>
-            */}
-            <NavLink to="/" activeClassName="active" exact className="nav-link">Home</NavLink> |{" "}
-            <NavLink to="/login" activeClassName="active" exact className="nav-link" >Login</NavLink>
+          <div className="navbar-nav col">
+            <NavLink to="/" activeClassName="active" exact className="nav-link mt-2">Home</NavLink>
+            
+            {
+              (user.email)
+              ?<span className="nav-link ms-sm-auto">{ user.email } <button onClick={logout} className='btn btn-danger'>Logout</button></span>
+              :<span className="nav-link ms-sm-auto"><NavLink to="/login" activeClassName="active" exact className="btn btn-success" >Login</NavLink></span>
+              
+            }
+            
 
           </div>
         </div>
       </div>
     </nav>
-            <p>Wellcome {user.email}</p>
     </>
   )
 }

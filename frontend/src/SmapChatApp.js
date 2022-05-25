@@ -7,11 +7,10 @@ import { AuthContext } from './auth/authContext';
 import { authReducer } from './auth/authReducer';
 
 const init = () => {
-    return {
-        logged: true,
+    return JSON.parse(localStorage.getItem('user')) || { logged: false};
+        /* { logged: true,
         email: 'qfluis@gmail.com',
-        user: 'qfluis'
-    }
+        user: 'qfluis'}  */
 }
 
 export const SmapChatApp = () => {
