@@ -1,10 +1,16 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../auth/authContext";
+import { types } from '../types/types';
 
 function LoginPage() {
 
     const email = useRef();
     const pass = useRef();
     const feedback = useRef();
+    const authContext = useContext(AuthContext);
+    const {dispatch} = authContext;
+    const navigate = useNavigate();
 
     const submitLogin = async (event) => {
         event.preventDefault();
@@ -26,10 +32,24 @@ function LoginPage() {
                 for (let error of data.errors) {
                     feedback.current.innerHTML += '<li>'+error.msg+'</li>';
                 }
-                feedback.current.innerHTML += '</ul>';                
+                feedback.current.innerHTML += '</ul>';  
+                return;              
             }
+
+            dispatch({
+                type: types.login,
+                payload: {
+                    token: data.token,
+                    email: data.email
+                /* TODO: Añadir email y nickname
+                ¿Sacarlo del JWT?
+                */
+                }
+            });
+
+            navigate("/");
             
-            console.log(data);
+            //console.log('token', data.token);
         } catch (err) {
             feedback.current.innerHTML = "Email y/o contraseña incorrectos";
         }

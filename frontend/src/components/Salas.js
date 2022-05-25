@@ -3,6 +3,8 @@ import { SocketContext } from '../context/SocketContext';
 
 export const Salas = ({setSala}) => {
 
+    //TODO: Al cambiar de página y volver se pierde lista de salas...
+
     const [salas, setSalas] = useState([]);
     const { socket } = useContext( SocketContext );
 

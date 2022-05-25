@@ -5,7 +5,8 @@ export const SocketContext = createContext();
 
 
 export const SocketProvider = ({children}) => {
-
+    // TODO: PASAR JWT¿?
+    // TODO: SE CONECTA SOCKET ANTES DEL LOGIN...
     const { socket, online } = useSocket('http://localhost:3333');
 
     return (

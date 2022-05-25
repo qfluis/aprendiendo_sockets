@@ -14,13 +14,15 @@ const login = async (req = request, res = response) => {
             msg:"usuario y/o contraseña no válidos"
         }); 
     } 
+    // TODO: obtener nickname y ponerlo en payload + añadir a respuesta
        
     // Generar JWT
     const token = await generarJWT( {email, rol:usuario.rol} );
 
     return res.status(200).json({
         msg: "login correcto 👍",
-        token
+        token,
+        email
     });    
 }
 
