@@ -6,7 +6,6 @@ import { types } from '../types/types'
 export const NavBar = () => {
 
   const authContext = useContext(AuthContext);
-  console.log(authContext)
   const {user, dispatch} = authContext;
   const navigate = useNavigate();
 
