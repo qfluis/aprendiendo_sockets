@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { SocketContext } from '../context/SocketContext';
 import { Salas } from '../components/Salas';
 import { Chat } from '../components/Chat';
+import { Map } from '../components/Map';
 
 function HomePage() {
 
@@ -18,7 +19,8 @@ function HomePage() {
             ?<span className="text-success">Online</span>
             :<span className="text-danger">Offline</span>
           }
-      </p>
+    </p>
+    <Map />
     <div className="container" >
       
       <div className="row">
