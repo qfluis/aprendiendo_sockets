@@ -1,4 +1,4 @@
-import {useState, useEffect, useContext } from 'react';
+import {useState, useEffect, useContext, useRef } from 'react';
 import { SocketContext } from '../context/SocketContext';
 
 export const Salas = ({setSala}) => {
@@ -7,11 +7,15 @@ export const Salas = ({setSala}) => {
 
     const [salas, setSalas] = useState([]);
     const { socket } = useContext( SocketContext );
+    const txtSala = useRef();
 
     useEffect(() => {
+
+        socket.emit('get-lista-sala');
+
         socket.on('lista-salas', (data) => {
             setSalas(data);
-            setSala(data[0]);
+            //setSala(data[0]);
         });
         return ()=> socket.off('lista-salas');
     }, [socket]);
@@ -20,9 +24,7 @@ export const Salas = ({setSala}) => {
 
     const cambioSala = (event) => {
         
-        //console.log(event.target.value);
         setSala(event.target.value);
-        //console.log(event.target.sala.value);
         // TODO: COSAS
     }
 
@@ -30,13 +32,16 @@ export const Salas = ({setSala}) => {
         event.preventDefault();
         const data = Array.from(new FormData(event.target));
         const {nuevaSala } = Object.fromEntries(data);
-        console.log(nuevaSala);
-        // TODO: CREAR SALA (socket.emit)
-        //TODO: actualizar lista salas...
-    }
+        socket.emit("crear-sala", nuevaSala, (response) => {
+            console.log(response.status);
+            txtSala.current.value = "";
+        });
+        
 
-    // TODO: SELECCIÓN DE SALA...
-    
+
+
+    }
+   
     // TODO: Marcar sala activa, revisar href
 
     return(
@@ -45,7 +50,7 @@ export const Salas = ({setSala}) => {
                 {salas.map(sala => <option value={sala}>{sala}</option>)}
             </select>
             <form onSubmit={ (event)=> nuevaSala(event) }>
-                <input name="nuevaSala" type="text" className='form-control' />
+                <input ref={txtSala} name="nuevaSala" type="text" className='form-control' />
                 <button type='submit' className='btn btn-primary form-control'>Crear sala</button>
             </form>
         </div>

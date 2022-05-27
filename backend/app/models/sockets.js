@@ -22,10 +22,11 @@ class Sockets {
             console.log("Cliente conectado", socket.id);
             socket.join(this.salas[0]); // Por defecto en primera sala (general)
 
-            socket.emit('lista-salas', this.salas.getSalas());
+            //socket.emit('lista-salas', this.salas.getSalas());
 
             socket.on('disconnect', () => {
                 console.log("Cliente desconectado", socket.id);
+                //TODO:desconectar de la sala¿?
             });
            
             socket.on("entrar-sala", (/*salaAnterior, */sala) => {
@@ -41,11 +42,20 @@ class Sockets {
                 // emit("salir-sala ¿?")
             });
 
-            //TODO: salir-sala¿?
-
             socket.on('enviar-mensaje', ({sala, usuario, mensaje}) => {
                 socket.to(sala).emit('recibir-mensaje', {usuario, mensaje});
-            });        
+            });   
+            
+            socket.on('get-lista-sala', () => {
+                socket.emit('lista-salas', this.salas.getSalas());
+            });
+
+            socket.on('crear-sala', (nuevaSala)=> {         
+                this.salas.addSala(nuevaSala);
+                this.io.emit('lista-salas', this.salas.getSalas());
+            });
+
+
         });
     }
 

@@ -1,10 +1,10 @@
 class Salas {
     constructor() {
-        this.salas = ["general", "petanca", "ganchillo", "taxidermismo"];
+        this.salas = [];//["general", "petanca", "ganchillo", "taxidermismo"];
     }
 
     addSala(nombreSala) {
-        this.salas.push(nombreSala);
+        if (this.salas.indexOf(nombreSala) === -1) this.salas.push(nombreSala);
     }
 
     getSalas(){
