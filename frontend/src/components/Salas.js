@@ -14,7 +14,7 @@ export const Salas = ({setSala}) => {
         socket.emit('get-lista-sala');
 
         socket.on('lista-salas', (data) => {
-            setSalas(data);
+            setSalas(data.map((s) => s.nombre));
             //setSala(data[0]);
         });
         return ()=> socket.off('lista-salas');
