@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Routes, Route, Navigate } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { AuthContext } from "../auth/authContext";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
@@ -13,8 +13,7 @@ const PrivateRoute = ({children}) => {
         <>
             {user.logged
             ? children
-            : <Navigate to="/login" />
-            
+            : <Navigate to="/login" />            
             }
         </>
     )
@@ -28,8 +27,7 @@ const PublicRoute = ({children}) => {
         <>
             {!user.logged
             ? children
-            : <Navigate to="/" />
-            
+            : <Navigate to="/" />            
             }
         </>
     )
@@ -40,27 +38,30 @@ export const AppRouter = () => {
     return(
 
             <div>
-                <Routes>
-                    <Route path="/login" element={
-                        <PublicRoute>
-                            <Routes>
-                                <Route path="/login" element={ <LoginPage /> } />
-                            </Routes>
-                        </PublicRoute>
-                    } />    
-                    
-                    <Route path="/*" element={
-                        <PrivateRoute>
-                            <Routes>
-                                <Route path="/" element={ <HomePage /> } />
-                            </Routes>
-                        </PrivateRoute>
-                    }
-                    />
-                    
-                    {/*<Route exact path="/" element={ <HomePage /> } />*/}
-                    <Route path="*" element={<Page404 />} />
-                </Routes>
+
+                    <Routes>
+                        <Route path="/login/*" element={
+                            <PublicRoute>
+                                <Routes>
+                                    <Route path="/" element={ <LoginPage /> } />
+                                </Routes>
+                            </PublicRoute>
+                        } />    
+                        
+                        <Route path="/*" element={
+                            <PrivateRoute>
+                                <Routes>
+                                    <Route path="/" element={ <HomePage /> } />
+                                    <Route path="*" element={<Page404 />} />
+                                </Routes>
+                            </PrivateRoute>
+                        }
+                        />
+                        
+                        {/*<Route exact path="/" element={ <HomePage /> } />*/}
+                        
+                    </Routes>
+
             </div>
     );
 }
