@@ -50,17 +50,26 @@ const register = async (req = request, res= response) => {
     const hash = bcrypt.hashSync(pass, salt);
 
     // Usuario creados, por defecto son rol USER
+    let usuario;
     try {
-        const usuario = new Usuario({ email, pass:hash, nickName, rol:'USER', fechaCreacion:new Date() });
+        usuario = new Usuario({ email, pass:hash, nickName, rol:'USER', fechaCreacion:new Date() });
         await usuario.save();
     } catch (err) {
         return res.status(500).json({
             msg:"Error en BD"
         });
     }    
-    return res.status(201).json({
+    // Generar JWT
+    const token = await generarJWT( {email, rol:usuario.rol} );
+    /*return res.status(201).json({
         msg:"usuario creado correctamente"
-    });
+    });*/
+    return res.status(201).json({
+        msg: "login correcto 👍",
+        token,
+        email,
+        nickName: usuario.nickName
+    });  
 }
 
 const authNotFound = (req, res) => {

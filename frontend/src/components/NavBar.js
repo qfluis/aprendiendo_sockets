@@ -31,7 +31,7 @@ export const NavBar = () => {
             
             {
               (user.email)
-              ?<span className="nav-link ms-sm-auto">{ user.email } <button onClick={logout} className='btn btn-danger'>Logout</button></span>
+              ?<span className="nav-link ms-sm-auto">{ user.email + ' - ' + user.nickName } <button onClick={logout} className='btn btn-danger'>Logout</button></span>
               :<span className="nav-link ms-sm-auto"><NavLink to="/login" activeClassName="active" exact className="btn btn-success" >Login</NavLink></span>
               
             }

@@ -4,6 +4,7 @@ import { AuthContext } from "../auth/authContext";
 import { SocketProvider } from '../context/SocketContext';
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
 import Page404 from "../pages/Page404";
 
 const PrivateRoute = ({children}) => {
@@ -45,6 +46,14 @@ export const AppRouter = () => {
                             <PublicRoute>
                                 <Routes>
                                     <Route path="/" element={ <LoginPage /> } />
+                                </Routes>
+                            </PublicRoute>
+                        } />   
+
+                        <Route path="/register/*" element={
+                            <PublicRoute>
+                                <Routes>
+                                    <Route path="/" element={ <RegisterPage /> } />
                                 </Routes>
                             </PublicRoute>
                         } />    
