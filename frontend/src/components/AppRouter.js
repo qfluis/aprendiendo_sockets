@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { AuthContext } from "../auth/authContext";
+import { SocketProvider } from '../context/SocketContext';
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import Page404 from "../pages/Page404";
@@ -50,10 +51,12 @@ export const AppRouter = () => {
                         
                         <Route path="/*" element={
                             <PrivateRoute>
-                                <Routes>
-                                    <Route path="/" element={ <HomePage /> } />
-                                    <Route path="*" element={<Page404 />} />
-                                </Routes>
+                                <SocketProvider>
+                                    <Routes>
+                                        <Route path="/" element={ <HomePage /> } />
+                                        <Route path="*" element={<Page404 />} />
+                                    </Routes>
+                                </SocketProvider>
                             </PrivateRoute>
                         }
                         />

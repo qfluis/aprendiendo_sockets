@@ -22,7 +22,8 @@ const login = async (req = request, res = response) => {
     return res.status(200).json({
         msg: "login correcto 👍",
         token,
-        email
+        email,
+        nickName: usuario.nickName
     });    
 }
 

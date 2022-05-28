@@ -40,10 +40,8 @@ function LoginPage() {
                 type: types.login,
                 payload: {
                     token: data.token,
-                    email: data.email
-                /* TODO: Añadir email y nickname
-                ¿Sacarlo del JWT?
-                */
+                    email: data.email,
+                    nickName: data.nickName
                 }
             });
 

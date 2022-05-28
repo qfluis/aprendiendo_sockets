@@ -1,10 +1,12 @@
 import {useEffect, useContext, useRef, useState } from 'react';
 import { SocketContext } from '../context/SocketContext';
+import { AuthContext } from '../auth/authContext';
 import { Mensaje } from './Mensaje';
 import './Chat.css';
 
 export const Chat = ({sala}) => {
     
+    const {user} = useContext(AuthContext);
     const [listaMensajes, setListaMensajes] = useState([]); // [{usuario: 'yolo', mensaje:'valgo',suMensaje:true}, {usuario: 'you', mensaje:'win',suMensaje:false}]
 
     //const [salas, setSalas] = useState([]);
@@ -14,9 +16,8 @@ export const Chat = ({sala}) => {
 
     useEffect(() => {
         socket.on('recibir-mensaje', ({usuario, mensaje}) => {
-            console.log(listaMensajes);// TODO: hacerlo bonito
-            setListaMensajes(listaMensajes => [...listaMensajes, {usuario, mensaje,suMensaje:true}]);
-            console.log(listaMensajes);
+            console.log('mensaje recibido');
+            setListaMensajes(listaMensajes => [...listaMensajes, {usuario, mensaje, suMensaje:true}]);
         });
     }, [socket]);
 
@@ -26,8 +27,8 @@ export const Chat = ({sala}) => {
         const { mensaje } = Object.fromEntries(data);
 
         event.target.mensaje.value = '';
-
-        const usuario = socket.id; // TODO: cambiar
+        console.log(user);
+        const usuario = user.nickName; // TODO: No se si se podría hackear...
 
         socket.emit('enviar-mensaje', { usuario, mensaje, sala });
         //TODO: acuse de recibo con callback ?
@@ -57,7 +58,7 @@ export const Chat = ({sala}) => {
                 
                 <div ref={contenedorChat} className="contenedor-chat col-12">
                     <div className='contenedor-mensajes col-12' ref={chatArea}>
-                        {listaMensajes.map( (m,i) => <Mensaje key={i} usuario={m.usuario} mensaje={m.mensaje} suMensaje={m.suMensaje} /> )}     
+                        {listaMensajes.map( (m,i) => <Mensaje key={i} usuario={m.usuario} mensaje={m.mensaje} fecha={m.fecha} suMensaje={m.suMensaje} /> )}     
                     </div>  
                 </div>    
             </div>
