@@ -11,10 +11,12 @@ function MyMapa() {
 
     useEffect(()=>{
         map.addEventListener("click",(e) =>{
+            
             const {lat, lng} = e.latlng;
             console.log({lat,lng});
             socket.emit("crear-sala", {nombre:"ei",lat,lng});
-            //LatLng {lat: 51.49455006465821, lng: -0.1204550529908155}
+            
+            //Marker.
         });
     },[]);
 
@@ -60,14 +62,11 @@ export const Map = () => {
                     </Marker>
                 )
             }
+            {/*}
+            <Marker position={[0,0]}>
+                <Popup>Holiwi</Popup>
+        </Marker>*/}
 
-            {/*
-            <Marker position={[51.505, -0.09]}>
-                <Popup>
-                    <h4>Chat bla bla</h4>
-                    <button class="btn btn-secondary">Acceder</button>
-                </Popup>
-            </Marker>*/}
         </MapContainer>
         </>
     )
