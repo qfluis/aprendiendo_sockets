@@ -3,6 +3,9 @@ import { SocketContext } from '../context/SocketContext';
 import { MapContainer, TileLayer, useMap, Popup, Marker } from 'react-leaflet'
 import './Map.css';
 
+import markerPicture from './marker.png';
+import L from 'leaflet';
+
 
 function MyMapa() {
     const map = useMap()
@@ -20,11 +23,13 @@ function MyMapa() {
         });
     },[]);
 
-    
-    
-
     return null
-  }
+}
+
+const markerImg = L.icon({
+    iconUrl: markerPicture,
+    iconSize:[35,35]
+});
 
 
 export const Map = () => {
@@ -54,7 +59,7 @@ export const Map = () => {
             />
             {
                 salas.map(sala => 
-                    <Marker position={[sala.lat, sala.lng]}>
+                    <Marker position={[sala.lat, sala.lng]} icon={markerImg} >
                         <Popup>
                             <h4>{sala.nombre}</h4>
                         <button class="btn btn-secondary" onClick={()=>entrarEnSala(sala)}>Acceder</button>
