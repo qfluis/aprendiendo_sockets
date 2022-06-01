@@ -20,10 +20,11 @@ function HomePage() {
             :<span className="text-danger">Offline</span>
           }
     </p>
-    <Map />
+    <Map setSala={setSala} />
     <div className="container" >
       
       <div className="row">
+        {/*
         <div className="col-md-3">
           <h2>Salas</h2>
           <Salas setSala={setSala} />
@@ -32,7 +33,9 @@ function HomePage() {
           <h2>Chat {sala}</h2>
           <Chat sala={sala}/>
         </div>
-          
+        */}
+        <h2>Chat {sala}</h2>
+        <Chat sala={sala}/>
       </div>
     </div>
     </>
