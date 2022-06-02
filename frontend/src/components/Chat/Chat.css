@@ -1,5 +1,5 @@
 .contenedor-chat {
-    height: 50vh;
+    height: 60vh;
     overflow: auto;
     overflow-x: hidden;
 }

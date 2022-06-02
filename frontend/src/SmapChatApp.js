@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 import { AppRouter } from './components/AppRouter';
-import { Footer } from './components/Footer';
+import { Footer } from './components/Footer/Footer';
 import { NavBar } from './components/NavBar';
 import { AuthContext } from './auth/authContext';
 import { authReducer } from './auth/authReducer';
@@ -26,9 +26,11 @@ export const SmapChatApp = () => {
                     user,
                     dispatch
             }}>
+                <div className="app-container">
                 <NavBar />
                 <AppRouter />
                 <Footer />
+                </div>
             </AuthContext.Provider>  
         </>
     );

@@ -1,14 +1,15 @@
 import React, { useEffect, useState, useContext, useRef } from 'react'
-import { SocketContext } from '../context/SocketContext';
+import { SocketContext } from '../../context/SocketContext';
 import { MapContainer, TileLayer, useMap, Popup, Marker } from 'react-leaflet'
 import './Map.css';
 
 import markerPicture from './marker.png';
+import markerPictureNew from './marker_new.png';
 import L from 'leaflet';
 
 
 function MyMapa({setCoordenadas}) {
-    const map = useMap()
+    const map = useMap();
     const { socket } = useContext( SocketContext );
 
     
@@ -25,6 +26,11 @@ function MyMapa({setCoordenadas}) {
 
 const markerImg = L.icon({
     iconUrl: markerPicture,
+    iconSize:[35,35]
+});
+
+const markerImgNew = L.icon({
+    iconUrl: markerPictureNew,
     iconSize:[35,35]
 });
 
@@ -65,7 +71,8 @@ export const Map = ({setSala}) => {
 
     return (
         <div className='container' >
-            <h2>Selecciona o crea sala</h2> 
+            <h2 className='mt-2 mb-0'>Selecciona o crea sala</h2> 
+            <hr className='mt-0' />
             <div className="row">            
                 <div className="col-md-4">
                     <h3>Nueva Sala</h3>
@@ -77,7 +84,7 @@ export const Map = ({setSala}) => {
                         ?"(" + coordenadas.lat + ")(" + coordenadas.lng + ")"
                         :""
                         } placeholder="Haz click en el mapa, no cliques en tu casa 😉" />
-                    <button className='btn btn-success' onClick={crearSala}>Crear Sala</button>
+                    <button className='btn btn-success mt-2 mb-2' onClick={crearSala}>Crear Sala</button>
                 </div>  
                 <div className="col-md-8" >
                     <MapContainer className="map-container" center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
@@ -96,6 +103,11 @@ export const Map = ({setSala}) => {
                                 </Marker>
                             )
                         }
+                        {
+                            (coordenadas.lat) ? <Marker position={[coordenadas.lat, coordenadas.lng]} icon={markerImgNew} />
+                            :""
+                        }                        
+                        
                     </MapContainer>
                 </div>
             </div>
