@@ -18,7 +18,8 @@ class Sockets {
     socketEvents() {
         // On connection
         this.io.on('connection', ( socket ) => {
-
+            // TODO: obtener token, validarlo, obtener nickname y guardarlo en socket...
+            //socket.nickname = nickname;
             console.log("Cliente conectado", socket.id);
             socket.join(this.salas[0]); // Por defecto en primera sala (general)
 
