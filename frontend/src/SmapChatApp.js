@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import { AppRouter } from './components/AppRouter';
 import { Footer } from './components/Footer/Footer';
-import { NavBar } from './components/NavBar';
+import { NavBar } from './components/NavBar/NavBar';
 import { AuthContext } from './auth/authContext';
 import { authReducer } from './auth/authReducer';
 

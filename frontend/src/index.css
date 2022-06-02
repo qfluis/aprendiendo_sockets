@@ -28,6 +28,8 @@ footer {
   color: white;
   padding-left: 12px;
   margin-top: auto;
+
+  transition: height 1s;
 }
 
 footer ul {

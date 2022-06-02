@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../auth/authContext';
-import { types } from '../types/types'
+import { AuthContext } from '../../auth/authContext';
+import { types } from '../../types/types'
+import logo from './logo.png';
 
 export const NavBar = () => {
 
@@ -10,10 +11,8 @@ export const NavBar = () => {
   const navigate = useNavigate();
 
   const logout = () => {
-    dispatch({type:types.logout});
-    
+    dispatch({type:types.logout});    
     navigate("/login");
-
   }
 
 
@@ -21,7 +20,7 @@ export const NavBar = () => {
     <>
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
       <div className="container-fluid">
-        <NavLink to="/" className="navbar-brand">SmapChat</NavLink>
+        <NavLink to="/" className="navbar-brand"><img src={logo} width='50px' />SmapChat</NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>

@@ -14,7 +14,9 @@ export const Footer = () => {
 
     return (
     <footer class="m-0 mt-auto bg-dark text-light p-2">
-      <h5>&copy; Luis Quevedo <button onClick={toggleMoreInfo} className='btn btn-success' >MoreInfo</button></h5>
+      <h5>&copy; Luis Quevedo <button onClick={toggleMoreInfo} className='btn btn-success' >
+        {(moreInfo)?'Less info':'More info'}
+        </button></h5>
       {
       (moreInfo)
       ?
