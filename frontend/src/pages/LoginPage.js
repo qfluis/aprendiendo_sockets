@@ -23,6 +23,7 @@ function LoginPage() {
     const {dispatch} = authContext;
     const navigate = useNavigate();
 
+    /*
     const handleCredentialResponse = (response) => {
         console.log("Encoded JWT ID token: " + response.credential);
     }
@@ -38,6 +39,7 @@ function LoginPage() {
           );
           google.accounts.id.prompt(); // also display the One Tap dialog
     },[]);
+    */
 
     const submitLogin = async (event) => {
         event.preventDefault();
@@ -84,6 +86,7 @@ function LoginPage() {
     return (
         <div className="container">
             <h3>Login</h3>
+            {/*}
             <div id="g_id_onload"
                 data-client_id="506924854352-a5ek884s129e9cp1eohfjo09sivivsdr.apps.googleusercontent.com"
                 data-login_uri="https://localhost:3000/auth/google-login"
@@ -97,7 +100,7 @@ function LoginPage() {
                 data-shape="rectangular"
                 data-logo_alignment="left">
             </div>
-            ei
+            */}
             <p>Si no tienes usuario <Link to="/register">registrate</Link></p>
             <form onSubmit={(event) => submitLogin(event)}>
                 <input ref={email} type="email" name="email" className="form-control mb-2" placeholder="email" />
