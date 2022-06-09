@@ -1,8 +1,18 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../auth/authContext";
 import { types } from '../types/types';
 import { Link } from "react-router-dom";
+
+
+// TODO:SING IN GOOGLE
+// https://www.youtube.com/watch?v=OhS0wN5Y6mE
+// https://developers.google.com/identity/gsi/web/guides/display-button#javascript
+
+// Para el backend ¿? https://github.com/googleapis/google-api-nodejs-client
+
+
+
 
 function LoginPage() {
 
@@ -12,6 +22,22 @@ function LoginPage() {
     const authContext = useContext(AuthContext);
     const {dispatch} = authContext;
     const navigate = useNavigate();
+
+    const handleCredentialResponse = (response) => {
+        console.log("Encoded JWT ID token: " + response.credential);
+    }
+
+    useState(()=>{
+        google.accounts.id.initialize({
+            client_id: "YOUR_GOOGLE_CLIENT_ID",
+            callback: this.handleCredentialResponse
+          });
+          google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            { theme: "outline", size: "large" }  // customization attributes
+          );
+          google.accounts.id.prompt(); // also display the One Tap dialog
+    },[]);
 
     const submitLogin = async (event) => {
         event.preventDefault();
@@ -58,6 +84,20 @@ function LoginPage() {
     return (
         <div className="container">
             <h3>Login</h3>
+            <div id="g_id_onload"
+                data-client_id="506924854352-a5ek884s129e9cp1eohfjo09sivivsdr.apps.googleusercontent.com"
+                data-login_uri="https://localhost:3000/auth/google-login"
+                data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin"
+                data-type="standard"
+                data-size="large"
+                data-theme="outline"
+                data-text="sign_in_with"
+                data-shape="rectangular"
+                data-logo_alignment="left">
+            </div>
+            ei
             <p>Si no tienes usuario <Link to="/register">registrate</Link></p>
             <form onSubmit={(event) => submitLogin(event)}>
                 <input ref={email} type="email" name="email" className="form-control mb-2" placeholder="email" />
