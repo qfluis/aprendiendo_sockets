@@ -27,11 +27,9 @@ export const Chat = ({sala}) => {
         const { mensaje } = Object.fromEntries(data);
 
         event.target.mensaje.value = '';
-        console.log(user);
-        const usuario = user.nickName; // TODO: No se si se podría hackear...
+        const usuario = user.nickName; 
 
         socket.emit('enviar-mensaje', { usuario, mensaje, sala });
-        //TODO: acuse de recibo con callback ?
         setListaMensajes(listaMensajes => [...listaMensajes, {usuario, mensaje,suMensaje:false}]);
     }
 
@@ -51,7 +49,6 @@ export const Chat = ({sala}) => {
         */
     }, [listaMensajes]);
     
-    // TODO: ARREGLAR CSS input y button no se comportan como debieran...
     return (
         <div className='container'>
             <div className='row'>                
@@ -67,7 +64,4 @@ export const Chat = ({sala}) => {
             </form>
         </div>
     )
-
-
-
 }

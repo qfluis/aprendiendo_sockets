@@ -3,8 +3,6 @@ import { SocketContext } from '../context/SocketContext';
 
 export const Salas = ({setSala}) => {
 
-    //TODO: Al cambiar de página y volver se pierde lista de salas...
-
     const [salas, setSalas] = useState([]);
     const { socket } = useContext( SocketContext );
     const txtSala = useRef();
@@ -22,10 +20,8 @@ export const Salas = ({setSala}) => {
 
     //TODO: ¿Escuchar update-salas¿?
 
-    const cambioSala = (event) => {
-        
+    const cambioSala = (event) => {        
         setSala(event.target.value);
-        // TODO: COSAS
     }
 
     const nuevaSala = (event) => {
@@ -35,15 +31,9 @@ export const Salas = ({setSala}) => {
         socket.emit("crear-sala", nuevaSala, (response) => {
             console.log(response.status);
             txtSala.current.value = "";
-        });
-        
-
-
-
+        });  
     }
    
-    // TODO: Marcar sala activa, revisar href
-
     return(
         <div className='container'>
             <select name="sala" onChange={ (event) => cambioSala(event)} className="form-control">

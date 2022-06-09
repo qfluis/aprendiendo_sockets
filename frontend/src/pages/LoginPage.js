@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 // https://developers.google.com/identity/gsi/web/guides/display-button#javascript
 
 // Para el backend ¿? https://github.com/googleapis/google-api-nodejs-client
-
+// OJO ahora es google identity
 
 
 

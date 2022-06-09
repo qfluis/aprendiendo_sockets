@@ -35,7 +35,6 @@ const PublicRoute = ({children}) => {
     )
 }
 
-// TODO: ResgisterPage
 export const AppRouter = () => {
     return(
 
