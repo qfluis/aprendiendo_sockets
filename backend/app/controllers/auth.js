@@ -16,7 +16,8 @@ const login = async (req = request, res = response) => {
     } 
        
     // Generar JWT
-    const token = await generarJWT( {email, rol:usuario.rol} );
+    //const token = await generarJWT( {email, rol:usuario.rol} );
+    const token = await generarJWT( {email} );
 
     return res.status(200).json({
         msg: "login correcto 👍",
@@ -58,7 +59,8 @@ const register = async (req = request, res= response) => {
         });
     }    
     // Generar JWT
-    const token = await generarJWT( {email, rol:usuario.rol} );
+    //const token = await generarJWT( {email, rol:usuario.rol} );
+    const token = await generarJWT( {email} );
     /*return res.status(201).json({
         msg:"usuario creado correctamente"
     });*/
@@ -70,10 +72,21 @@ const register = async (req = request, res= response) => {
     });  
 }
 
+const renewToken = async (req,res) => {
+    const { email } = req.body;
+    const token = await generarJWT( {email} );
+
+    res.status(200).json({
+        msg: "Token renovado 👍",
+        token
+    });  
+
+}
+
 const authNotFound = (req, res) => {
     res.status(400).json({
         msg: req.path + " - Endpoint no válido"
     });
 }
 
-module.exports = { login, register, authNotFound }
+module.exports = { login, register, renewToken, authNotFound }

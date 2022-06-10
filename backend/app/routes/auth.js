@@ -1,8 +1,9 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
+const { validarJWT } = require('../middlewares/validar-jwt');
 
-const { login, register, authNotFound } = require('../controllers/auth');
+const { login, register,renewToken, authNotFound } = require('../controllers/auth');
 
 const router = Router();
 // login
@@ -19,6 +20,9 @@ router.post('/register', [  // TODO: PETA ANTES DE HACER LOS CHECKS SI LE PASAS 
     check('nickName', 'Debes introducir un nickName de al menos 3 caracteres').isLength({min:3}),   
     validarCampos
 ], register);
+
+// Validar & revalidar token
+router.post('/renew', validarJWT, renewToken);
 
 // Not found
 router.use(authNotFound);
