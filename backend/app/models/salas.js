@@ -3,8 +3,9 @@ class Salas {
         this.salas = [];//["general", "petanca", "ganchillo", "taxidermismo"];
     }
 
-    addSala(nombreSala) {
-        if (this.salas.indexOf(nombreSala) === -1) this.salas.push(nombreSala);
+    addSala(sala) {
+        
+        if (this.salas.map(s => s.nombre).indexOf(sala.nombre) === -1) this.salas.push(sala);
     }
 
     getSalas(){

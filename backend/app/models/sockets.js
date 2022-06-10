@@ -51,9 +51,9 @@ class Sockets {
                 socket.emit('lista-salas', this.salas.getSalas());
             });
 
-            socket.on('crear-sala', (nuevaSala)=> {         
+            socket.on('crear-sala', (nuevaSala)=> {    
                 this.salas.addSala(nuevaSala);
-                this.io.emit('lista-salas', this.salas.getSalas());
+                this.io.emit('lista-salas', this.salas.getSalas());                
             });
 
 
