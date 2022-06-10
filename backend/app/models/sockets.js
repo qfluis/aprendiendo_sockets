@@ -20,13 +20,13 @@ class Sockets {
         this.io.on('connection', ( socket ) => {
             // TODO: obtener token, validarlo, obtener nickname y guardarlo en socket...
             //socket.nickname = nickname;
-            console.log("Cliente conectado", socket.id);
+            //console.log("Cliente conectado", socket.id);
             socket.join(this.salas[0]); // Por defecto en primera sala (general)
 
             //socket.emit('lista-salas', this.salas.getSalas());
 
             socket.on('disconnect', () => {
-                console.log("Cliente desconectado", socket.id);
+                //console.log("Cliente desconectado", socket.id);
                 //TODO:desconectar de la sala¿?
             });
            
@@ -37,7 +37,7 @@ class Sockets {
 
                 if (salaAnterior) socket.leave(salaAnterior);
                 socket.join(sala);
-                console.log(socket.id, "Entra en sala " + sala);
+                //console.log(socket.id, "Entra en sala " + sala);
                 
                 // emit("entrar-sala ¿?")
                 // emit("salir-sala ¿?")

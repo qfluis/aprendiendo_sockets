@@ -16,7 +16,7 @@ export const Chat = ({sala}) => {
 
     useEffect(() => {
         socket.on('recibir-mensaje', ({usuario, mensaje}) => {
-            console.log('mensaje recibido');
+            //console.log('mensaje recibido');
             setListaMensajes(listaMensajes => [...listaMensajes, {usuario, mensaje, suMensaje:true}]);
         });
     }, [socket]);

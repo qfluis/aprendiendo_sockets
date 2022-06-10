@@ -29,7 +29,7 @@ export const Salas = ({setSala}) => {
         const data = Array.from(new FormData(event.target));
         const {nuevaSala } = Object.fromEntries(data);
         socket.emit("crear-sala", nuevaSala, (response) => {
-            console.log(response.status);
+            //console.log(response.status);
             txtSala.current.value = "";
         });  
     }

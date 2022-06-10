@@ -55,8 +55,8 @@ export const Map = ({setSala}) => {
     }
 
     const crearSala = () => {
-        console.log(nombreSala.current.value);
-        console.log(coordenadas);
+        //console.log(nombreSala.current.value);
+        //console.log(coordenadas);
         if(nombreSala.current.value && coordenadas.lat) {
             socket.emit("crear-sala", {
                 nombre: nombreSala.current.value,
