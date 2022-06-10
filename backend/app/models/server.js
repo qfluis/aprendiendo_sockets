@@ -1,6 +1,7 @@
 const express = require('express');
 const http     = require('http');
 const cors = require('cors');
+const { bodyJsonValido } = require('../middlewares/body_json_valido');
 const dbConnection = require('../db/connection');
 //const { socketController } = require('../sockets/controller');
 const Sockets = require('./sockets');
@@ -54,7 +55,8 @@ class Server {
 
         // Lectura y parseo del body
         this.app.use( express.json() );
-
+        // Devuelve error si al parsear json da error
+        this.app.use(bodyJsonValido);
         // Directorio Público
         // this.app.use( express.static('public') );
 
