@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { SocketContext } from '../context/SocketContext';
-import { Salas } from '../components/Salas';
+//import { Salas } from '../components/Salas';
 import { Chat } from '../components/Chat/Chat';
 import { Map } from '../components/Map/Map';
 
