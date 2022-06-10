@@ -27,7 +27,6 @@ const login = async (req = request, res = response) => {
 }
 
 const register = async (req = request, res= response) => {
-    console.log("holis");
     const { email, pass, nickName } = req.body;
     
     // Comprobaciones valores únicos BD
